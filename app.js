@@ -6,7 +6,7 @@ const popupMenu = document.querySelector('#popup-menu')
 const closeButton = document.querySelector('.close')
 const changeTitle = document.querySelector('#change')
 const closePopup = document.querySelector('.close-popup')
-const alertNote = document.querySelector('.alert')
+const edited = document.querySelector('.edited')
 const tasks = []
 
 const toggleTask = e => {
@@ -21,7 +21,6 @@ const toggleTask = e => {
 			changeTitle.value = tasks[index].title
 			changeTitle.dataset.index = index
 			popupMenu.style.display = 'block'
-			alertNote.classList.remove('active')
 		}
 		render()
 	}
@@ -66,14 +65,12 @@ const createNewElement = () => {
 	}
 	tasks.push(newTask)
 	inputTitle.value = ''
-	alertNote.classList.remove('active')
 	render()
 }
 
 const changeTitleFunc = () => {
 	const index = changeTitle.dataset.index
 	tasks[index].title = changeTitle.value
-	alertNote.classList.add('active')
 	popupMenu.style.display = 'none'
 	render()
 }
