@@ -8,7 +8,7 @@ const changeTitle = document.querySelector('#change')
 const closePopup = document.querySelector('.close-popup')
 const edited = document.querySelector('.edited')
 const alertMenu = document.querySelector('.alert')
-const tasks = []
+let tasks = []
 
 const toggleTask = e => {
 	if (e.target.dataset.index) {
@@ -25,6 +25,7 @@ const toggleTask = e => {
 		}
 		render()
 	}
+	saveTasksToStorage()
 }
 
 const getTemplate = (task, index) => {
@@ -67,6 +68,7 @@ const createNewElement = () => {
 	tasks.push(newTask)
 	inputTitle.value = ''
 	render()
+	saveTasksToStorage()
 }
 
 const changeTitleFunc = () => {
@@ -76,6 +78,18 @@ const changeTitleFunc = () => {
 	alertMenu.classList.add('show')
 	setTimeout(() => alertMenu.classList.remove('show'), 3800)
 	render()
+	saveTasksToStorage()
+}
+
+const saveTasksToStorage = () =>
+	localStorage.setItem('tasks', JSON.stringify(tasks))
+
+const loadTasksFromStorage = () => {
+	const storedTasks = localStorage.getItem('tasks')
+	if (storedTasks) {
+		tasks = JSON.parse(storedTasks)
+		render()
+	}
 }
 
 closeButton.addEventListener('click', () => (popupMenu.style.display = 'none'))
@@ -83,3 +97,4 @@ closePopup.addEventListener('click', changeTitleFunc)
 createBtn.addEventListener('click', createNewElement)
 listElement.addEventListener('click', toggleTask)
 render()
+loadTasksFromStorage()
