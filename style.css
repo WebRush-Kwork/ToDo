@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 #open-popup {
 	display: block;
 	padding: 10px 20px;
@@ -52,4 +53,65 @@
 h2 {
 	color: #000;
 	text-align: center;
+}
+.alert {
+	display: none;
+	position: absolute;
+	background-color: #4caf50;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+}
+.alert.show {
+	display: block;
+	animation: alert 4s 1;
+}
+.alert__text {
+	font-family: 'Oswald', sans-serif;
+	letter-spacing: 1px;
+}
+
+/* MEDIA */
+@media (max-width: 768px) {
+	.alert.show {
+		margin-left: 145px;
+	}
+}
+@media (max-width: 575px) {
+	.alert {
+		bottom: 0;
+		right: 1%;
+	}
+	.alert.show {
+		animation: alert-down 4s 1;
+	}
+}
+
+@keyframes alert {
+	0% {
+		transform: translateY(-100%);
+	}
+	25% {
+		transform: translateY(-50%);
+	}
+	50% {
+		transform: translateY(0%);
+	}
+	100% {
+		transform: translateY(-100%);
+	}
+}
+@keyframes alert-down {
+	0% {
+		transform: translateY(140%);
+	}
+	25% {
+		transform: translateY(50%);
+	}
+	50% {
+		transform: translateY(0%);
+	}
+	100% {
+		transform: translateY(140%);
+	}
 }
