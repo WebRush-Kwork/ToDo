@@ -14,12 +14,14 @@
 			integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 			crossorigin="anonymous"
 		/>
+		<link rel="stylesheet" href="style.css" />
 		<title>02. JS Array & Objects</title>
-		<script src="app.js" defer></script>
-		<!-- <script src="js/array-theory.js" defer></script> -->
 	</head>
 	<body class="bg-dark text-light">
 		<div class="container w-30">
+			<div class="alert">
+				<h1 class="alert__text">Ваша заметка была отредактирована</h1>
+			</div>
 			<h1 class="text-center">Заметки</h1>
 			<input
 				type="text"
@@ -31,6 +33,20 @@
 				Добавить
 			</button>
 			<ul class="list-group list-group-flush" id="list"></ul>
+			<div id="popup-menu" class="popup">
+				<div class="popup-content">
+					<span class="close">&times;</span>
+					<h2>Попап меню</h2>
+					<input
+						type="text"
+						class="form-control mb-2"
+						placeholder="Введите новое название"
+						id="change"
+					/>
+					<button id="open-popup" class="close-popup">Сохранить</button>
+				</div>
+			</div>
 		</div>
+		<script src="js/app.js"></script>
 	</body>
 </html>
