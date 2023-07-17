@@ -7,6 +7,7 @@ const closeButton = document.querySelector('.close')
 const changeTitle = document.querySelector('#change')
 const closePopup = document.querySelector('.close-popup')
 const edited = document.querySelector('.edited')
+const alertMenu = document.querySelector('.alert')
 const tasks = []
 
 const toggleTask = e => {
@@ -72,6 +73,8 @@ const changeTitleFunc = () => {
 	const index = changeTitle.dataset.index
 	tasks[index].title = changeTitle.value
 	popupMenu.style.display = 'none'
+	alertMenu.classList.add('show')
+	setTimeout(() => alertMenu.classList.remove('show'), 3800)
 	render()
 }
 
