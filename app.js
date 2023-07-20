@@ -99,7 +99,12 @@ const loadTasks = () => {
 	}
 }
 
-closeButton.addEventListener('click', () => (popupMenu.style.display = 'none'))
+const closePopupFunc = () => {
+	warningMessage.style.display = 'none'
+	popupMenu.style.display = 'none'
+}
+
+closeButton.addEventListener('click', closePopupFunc)
 closePopup.addEventListener('click', changeTitleFunc)
 createBtn.addEventListener('click', createNewElement)
 listElement.addEventListener('click', toggleTask)
