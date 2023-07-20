@@ -70,7 +70,15 @@ h2 {
 	font-family: 'Oswald', sans-serif;
 	letter-spacing: 1px;
 }
-
+.warning-message {
+	display: none;
+	color: #000;
+	text-align: center;
+	margin-top: 10px;
+}
+.warning-message span {
+	color: #e21010;
+}
 /* MEDIA */
 @media (max-width: 768px) {
 	.alert.show {
