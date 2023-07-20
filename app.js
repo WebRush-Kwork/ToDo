@@ -8,6 +8,7 @@ const changeTitle = document.querySelector('#change')
 const closePopup = document.querySelector('.close-popup')
 const edited = document.querySelector('.edited')
 const alertMenu = document.querySelector('.alert')
+const warningMessage = document.querySelector('.warning-message')
 let tasks = []
 
 const toggleTask = e => {
@@ -25,7 +26,7 @@ const toggleTask = e => {
 		}
 		render()
 	}
-	saveTasksToStorage()
+	saveTasks()
 }
 
 const getTemplate = (task, index) => {
@@ -68,23 +69,29 @@ const createNewElement = () => {
 	tasks.push(newTask)
 	inputTitle.value = ''
 	render()
-	saveTasksToStorage()
+	saveTasks()
 }
 
 const changeTitleFunc = () => {
 	const index = changeTitle.dataset.index
+	const existingTitles = tasks.map(task => task.title)
+	const isDuplicate = existingTitles.some(title => title === changeTitle.value)
+	if (isDuplicate) {
+		warningMessage.style.display = 'block'
+		return
+	}
+	setTimeout(() => alertMenu.classList.remove('show'), 3800)
 	tasks[index].title = changeTitle.value
+	warningMessage.style.display = 'none'
 	popupMenu.style.display = 'none'
 	alertMenu.classList.add('show')
-	setTimeout(() => alertMenu.classList.remove('show'), 3800)
 	render()
-	saveTasksToStorage()
+	saveTasks()
 }
 
-const saveTasksToStorage = () =>
-	localStorage.setItem('tasks', JSON.stringify(tasks))
+const saveTasks = () => localStorage.setItem('tasks', JSON.stringify(tasks))
 
-const loadTasksFromStorage = () => {
+const loadTasks = () => {
 	const storedTasks = localStorage.getItem('tasks')
 	if (storedTasks) {
 		tasks = JSON.parse(storedTasks)
@@ -97,4 +104,4 @@ closePopup.addEventListener('click', changeTitleFunc)
 createBtn.addEventListener('click', createNewElement)
 listElement.addEventListener('click', toggleTask)
 render()
-loadTasksFromStorage()
+loadTasks()
